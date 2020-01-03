@@ -12,7 +12,9 @@
 #define C_IMPUTIL_H
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
+#ifdef WIN32
 #include <windows.h>
+#endif
 #include <QWidget>
 #include <QString>
 #include "stwtypes.h"
@@ -46,6 +48,7 @@ public:
                                                   const QString & orc_AbsoluteReferenceDir);
 
 private:
+#ifdef WIN32
    struct T_HandleData
    {
       stw_types::uint32 u32_ProcessId;
@@ -53,6 +56,8 @@ private:
    };
 
    static void mh_GetExistingApplicationHandle(const std::wstring & orc_ExeName, std::vector<HWND> & orc_Windows);
+   static WINBOOL CALLBACK mh_EnumWindowsCallback(HWND opc_Handle, const LPARAM os32_LParam);
+#endif
    static stw_types::sint32 mh_ExecuteCodeGenerator(const QString & orc_NodeName, const QString & orc_AppName,
                                                     const QString & orc_ExportFolder,
                                                     std::vector<QString> & orc_ExportedFiles,
@@ -60,7 +65,6 @@ private:
    static stw_types::sint32 mh_ExportCodeNode(const stw_types::uint32 ou32_NodeIndex,
                                               const std::vector<stw_types::uint32> & orc_AppIndices,
                                               std::list<QString> & orc_ExportedFiles, const bool & orq_Erase);
-   static WINBOOL CALLBACK mh_EnumWindowsCallback(HWND opc_Handle, const LPARAM os32_LParam);
 };
 
 /* -- Extern Global Variables --------------------------------------------------------------------------------------- */

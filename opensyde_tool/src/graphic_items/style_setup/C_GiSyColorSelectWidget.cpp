@@ -86,9 +86,10 @@ C_GiSyColorSelectWidget::C_GiSyColorSelectWidget(stw_opensyde_gui_elements::C_Og
    connect(this->mpc_Ui->pc_PushButtonHTML, SIGNAL(clicked()), this, SLOT(m_HMTLClicked()));
    connect(this->mpc_Ui->pc_PushButtonRGBA, SIGNAL(clicked()), this, SLOT(m_RGBAClicked()));
 
-   //   connect(this->mpc_Ui->pc_LineEditColor, SIGNAL(textChanged()), this, SLOT(m_LineEditTextChanged()));
-   connect(this->mpc_Ui->pc_LineEditColor, QLineEdit::textChanged, this,
-           C_GiSyColorSelectWidget::m_LineEditTextChanged);
+#warning C_GiSyColorSelectWidget: This call works for Linux built; don't know why the call below fails...
+   connect(this->mpc_Ui->pc_LineEditColor, SIGNAL(textChanged()), this, SLOT(m_LineEditTextChanged()));
+//   connect(this->mpc_Ui->pc_LineEditColor, QLineEdit::textChanged, this,
+//           C_GiSyColorSelectWidget::m_LineEditTextChanged);
 }
 
 //----------------------------------------------------------------------------------------------------------------------

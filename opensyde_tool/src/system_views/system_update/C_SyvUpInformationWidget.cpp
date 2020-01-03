@@ -13,7 +13,9 @@
 #include "precomp_headers.h"
 
 #include <QFileInfo>
+#ifdef WIN32
 #include <QWinTaskbarButton>
+#endif
 
 #include "stwerrors.h"
 #include "C_SyvUpInformationWidget.h"
@@ -68,7 +70,9 @@ C_SyvUpInformationWidget::C_SyvUpInformationWidget(QWidget * const opc_Parent) :
    mu64_FlashedBytesTimestampPrevPrev(0ULL)
 {
    QWidget * const pc_Top = C_OgeWiUtil::h_GetWidgetUnderNextPopUp(this);
+#ifdef WIN32
    QWinTaskbarButton * const pc_Button = new QWinTaskbarButton(pc_Top);
+#endif
    const C_PuiSvData * const pc_View = C_PuiSvHandler::h_GetInstance()->GetView(this->mu32_ViewIndex);
 
    this->mpc_Ui->setupUi(this);
@@ -78,8 +82,10 @@ C_SyvUpInformationWidget::C_SyvUpInformationWidget(QWidget * const opc_Parent) :
    this->mpc_Ui->pc_SplitterVert->setStretchFactor(0, 1);
 
    //handle task bar button
+#ifdef WIN32
    pc_Button->setWindow(pc_Top->windowHandle());
    this->mpc_Progress = pc_Button->progress();
+#endif
 
    this->ResetSummary();
 
@@ -152,7 +158,9 @@ C_SyvUpInformationWidget::~C_SyvUpInformationWidget()
                                                               this->mpc_Ui->pc_SplitterVert->isVisibleTo(this));
    }
 
+#ifdef WIN32
    delete this->mpc_Progress;
+#endif
    delete this->mpc_Ui;
 }
 
@@ -923,10 +931,15 @@ void C_SyvUpInformationWidget::m_UpdateDataRate()
 //----------------------------------------------------------------------------------------------------------------------
 void C_SyvUpInformationWidget::m_UpdateWinProgress(const bool oq_Visible, const sint32 os32_Value)
 {
+#ifdef WIN32
    this->mpc_Progress->setVisible(oq_Visible);
    this->mpc_Progress->setMinimum(0);
    this->mpc_Progress->setMaximum(100);
    this->mpc_Progress->setValue(os32_Value);
+#else
+   (void)oq_Visible;
+   (void)os32_Value;
+#endif
 }
 
 //----------------------------------------------------------------------------------------------------------------------
