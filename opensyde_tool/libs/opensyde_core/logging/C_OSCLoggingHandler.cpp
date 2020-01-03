@@ -12,6 +12,7 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "precomp_headers.h"
 
+#include <stdlib.h>
 #include <iostream>
 #include <sstream>
 #include <iomanip>

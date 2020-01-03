@@ -8,12 +8,13 @@ QT       += core gui
 CONFIG   += precompile_header
 CONFIG   += no_keywords
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets charts svg winextras
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets charts svg
+win32:greaterThan(QT_MAJOR_VERSION, 4): QT += winextras
 
 TARGET = openSYDE
 TEMPLATE = app
 
-DESTDIR = ../result/tool
+DESTDIR = $$_PRO_FILE_PWD_/../result/tool
 
 #version info:
 RC_FILE = ../src/resources.rc
@@ -21,14 +22,12 @@ RC_FILE = ../src/resources.rc
 # Include openSYDE core library
 #  (Do not drag in the zipping/unzipping classes:
 #   we have a special handling for miniz.c due to compiler warnings, so we refer to those files manually)
-opensyde_core_skip_modules += opensyde_core_skip_zipping
+win32:opensyde_core_skip_modules += opensyde_core_skip_zipping
 opensyde_core_skip_modules += opensyde_core_skip_code_generation
 opensyde_core_skip_modules += opensyde_core_skip_protocol_logging
 include(../libs/opensyde_core/opensyde_core.pri)
 
-SOURCES += ../src/main.cpp \
-    ../libs/opensyde_core/C_OSCZipData.cpp \
-    ../libs/opensyde_core/C_OSCZipFile.cpp \
+SOURCES += ../src/main.cpp\
     ../src/system_definition/C_SdTopologyWidget.cpp \
     ../src/system_definition/node_edit/datapools/C_SdNdeDpEditWidget.cpp \
     ../src/system_views/C_SyvHandlerWidget.cpp \
@@ -98,7 +97,6 @@ SOURCES += ../src/main.cpp \
     ../src/graphic_items/C_GiRect.cpp \
     ../src/opensyde_gui_elements/label/C_OgeLabPopUpSubTitle.cpp \
     ../src/graphic_items/style_setup/C_GiSyBoundaryWidget.cpp \
-    ../src/help_engine/C_HeHandler.cpp \
     ../src/graphic_items/C_GiText.cpp \
     ../src/graphic_items/style_setup/C_GiSyTextElementWidget.cpp \
     ../src/opensyde_gui_elements/push_button/C_OgePubIconText.cpp \
@@ -379,7 +377,6 @@ SOURCES += ../src/main.cpp \
     ../src/scene_base/undo/topology/C_SebUnoTopBusConnectorMoveCommand.cpp \
     ../src/system_views/dashboards/C_SyvDaTearOffWidget.cpp \
     ../src/scene_base/C_SebTopologyBaseContextMenuManager.cpp \
-    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.cpp \
     ../src/opensyde_gui_elements/group_box/C_OgeGbxRead.cpp \
     ../src/opensyde_gui_elements/label/C_OgeLabReadMain.cpp \
     ../src/opensyde_gui_elements/label/C_OgeLabReadSub.cpp \
@@ -846,12 +843,18 @@ win32-msvc* {
    SOURCES += ../result/miniz/miniz.c
 }
 
+win32:SOURCES  += \
+    ../src/help_engine/windows/C_HeHandler.cpp \
+    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.cpp
+
+unix:SOURCES  += \
+    ../src/help_engine/linux/C_HeHandler.cpp \
+    ../src/system_views/system_setup/C_SyvSeCanConfigurationDialog.cpp
+
+
 PRECOMPILED_HEADER = ../src/precompiled_headers/gui/precomp_headers.h
 
 HEADERS  += \
-    ../libs/opensyde_core/C_OSCZipData.h \
-    ../libs/opensyde_core/C_OSCZipFile.h \
-    ../libs/opensyde_core/miniz/miniz.h \
     ../src/system_definition/C_SdTopologyWidget.h \
     ../src/system_definition/node_edit/datapools/C_SdNdeDpEditWidget.h \
     ../src/system_views/C_SyvHandlerWidget.h \
@@ -923,7 +926,6 @@ HEADERS  += \
     ../src/graphic_items/C_GiRect.h \
     ../src/opensyde_gui_elements/label/C_OgeLabPopUpSubTitle.h \
     ../src/graphic_items/style_setup/C_GiSyBoundaryWidget.h \
-    ../src/help_engine/C_HeHandler.h \
     ../src/graphic_items/C_GiText.h \
     ../src/graphic_items/style_setup/C_GiSyTextElementWidget.h \
     ../src/opensyde_gui_elements/push_button/C_OgePubIconText.h \
@@ -1204,7 +1206,6 @@ HEADERS  += \
     ../src/scene_base/undo/topology/C_SebUnoTopBaseManager.h \
     ../src/system_views/dashboards/C_SyvDaTearOffWidget.h \
     ../src/scene_base/C_SebTopologyBaseContextMenuManager.h \
-    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.h \
     ../src/opensyde_gui_elements/group_box/C_OgeGbxRead.h \
     ../src/opensyde_gui_elements/label/C_OgeLabReadMain.h \
     ../src/opensyde_gui_elements/label/C_OgeLabReadSub.h \
@@ -1658,6 +1659,14 @@ HEADERS  += \
     ../src/opensyde_gui_elements/label/C_OgeLabElided.h \
     ../src/opensyde_gui_elements/spin_box/C_OgeSpxDoubleAutoFixCustomTrigger.h
 
+win32:HEADERS += \
+    ../src/help_engine/windows/C_HeHandler.h \
+    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.h
+
+unix:HEADERS += \
+    ../src/help_engine/linux/C_HeHandler.h \
+    ../src/system_views/system_setup/C_SyvSeCanConfigurationDialog.h
+
 FORMS    += \
     ../src/system_definition/C_SdTopologyWidget.ui \
     ../src/system_definition/node_edit/datapools/C_SdNdeDpEditWidget.ui \
@@ -1875,27 +1884,32 @@ INCLUDEPATH += ../src \
                ../src/project_gui/system_definition \
                ../src/project_gui/system_definition/node \
                ../src/project_gui/system_definition/node/can \
-               ../src/help_engine \
                ../src/gettext \
                ../src/util \
                ../src/precompiled_headers/gui \
-               ../libs/opensyde_core/miniz \
-               ../libs/gettext \
                ../libs/dbc_driver_library/src/ \
                ../libs/dbc_driver_library/src/Vector \
                ../libs/dbc_driver_library/src/Vector/DBC
 
+win32:INCLUDEPATH += \
+               ../src/help_engine/windows \
+               ../libs/gettext
+
+unix:INCLUDEPATH += \
+               ../src/help_engine/linux
+
+
 RESOURCES += \
     ../src/application.qrc
 
-LIBS += -L../libs/gettext -lintl \
-        -lz
+win32:LIBS += -L../libs/gettext \
+              -lintl \
+              -lz \
+              -lws2_32 \
+              -lIphlpapi \
+              -lversion
 
-LIBS += -lws2_32   #WinSock
-LIBS += -lIphlpapi #IP helper API
-
-#add windows API libraries
-LIBS += -lversion
+unix:QMAKE_CXXFLAGS += -std=c++0x
 
 QMAKE_TARGET_COMPANY = STW
 QMAKE_TARGET_PRODUCT = openSYDE
