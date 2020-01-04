@@ -455,6 +455,27 @@ else()
    )
 endif()
 
+# linux target drivers: CAN and Ethernet dispatchers
+if(OPENSYDE_CORE_SKIP_LINUX_DRIVERS)
+   message("OPENSYDE_CORE_SKIP_LINUX_DRIVERS detected ... skipping package")
+else()
+   message("OPENSYDE_CORE_SKIP_LINUX_DRIVERS not detected ... dragging in package")
+
+   set (OPENSYDE_CORE_LINUX_DRIVERS_SOURCES
+      ${CMAKE_CURRENT_SOURCE_DIR}/can_dispatcher/target_linux_socket_can/CCAN.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/can_dispatcher/target_linux_socket_can/CCAN.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.h
+   )
+
+   set(OPENSYDE_CORE_LINUX_DRIVERS_INCLUDE_DIRECTORIES
+      ${CMAKE_CURRENT_SOURCE_DIR}/can_dispatcher/target_linux_socket_can
+      ${CMAKE_CURRENT_SOURCE_DIR}/ip_dispatcher/target_linux_sock
+   )
+endif()
+
+
+
 # windows target glue layer
 if(OPENSYDE_CORE_SKIP_WINDOWS_TARGET)
    message("OPENSYDE_CORE_SKIP_WINDOWS_TARGET detected ... skipping package")
@@ -474,6 +495,28 @@ else()
 
    set(OPENSYDE_CORE_WINDOWS_TARGET_INCLUDE_DIRECTORIES
       ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_windows
+   )
+endif()
+
+# linux target glue layer
+if(OPENSYDE_CORE_SKIP_LINUX_TARGET)
+   message("OPENSYDE_CORE_SKIP_LINUX_TARGET detected ... skipping package")
+else()
+   message("OPENSYDE_CORE_SKIP_LINUX_TARGET not detected ... dragging in package")
+
+   set (OPENSYDE_CORE_LINUX_TARGET_SOURCES
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLFile.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLTasks.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLTime.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLUtils.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLFile.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLTasks.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLTime.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux/TGLUtils.h
+   )
+
+   set(OPENSYDE_CORE_LINUX_TARGET_INCLUDE_DIRECTORIES
+      ${CMAKE_CURRENT_SOURCE_DIR}/kefex_diaglib/tgl_linux
    )
 endif()
 
@@ -540,6 +583,8 @@ set(OPENSYDE_CORE_SOURCES
    ${OPENSYDE_CORE_PROTOCOL_DRIVERS_SOURCES}
    ${OPENSYDE_CORE_WINDOWS_DRIVERS_SOURCES}
    ${OPENSYDE_CORE_WINDOWS_TARGET_SOURCES}
+   ${OPENSYDE_CORE_LINUX_DRIVERS_SOURCES}
+   ${OPENSYDE_CORE_LINUX_TARGET_SOURCES}
    ${OPENSYDE_CORE_PROTOCOL_LOGGING_SOURCES}
 )
 
@@ -553,6 +598,8 @@ set(OPENSYDE_CORE_INCLUDE_DIRECTORIES
    ${OPENSYDE_CORE_PROTOCOL_DRIVERS_INCLUDE_DIRECTORIES}
    ${OPENSYDE_CORE_WINDOWS_DRIVERS_INCLUDE_DIRECTORIES}
    ${OPENSYDE_CORE_WINDOWS_TARGET_INCLUDE_DIRECTORIES}
+   ${OPENSYDE_CORE_LINUX_DRIVERS_INCLUDE_DIRECTORIES}
+   ${OPENSYDE_CORE_LINUX_TARGET_INCLUDE_DIRECTORIES}
    ${OPENSYDE_CORE_PROTOCOL_LOGGING_INCLUDE_DIRECTORIES}
 )
 

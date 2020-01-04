@@ -554,7 +554,6 @@ void C_OSCExportHalc::mh_AddGlobalVariables(C_SCLStringList & orc_Data, const C_
                      orc_Data.Append("      },");
                   }
                   orc_Data.Append("      {");
-                  q_BracketIsOpen = true;
                   mh_AddDpListElementReferences(orc_Data, pc_ChannelValues->c_InputValues, c_ChannelConfigs,
                                                 C_OSCHalcDefDomain::eVA_INPUT,
                                                 pc_Domain->c_SingularName, q_IsArray, oq_IsSafe);
@@ -568,7 +567,6 @@ void C_OSCExportHalc::mh_AddGlobalVariables(C_SCLStringList & orc_Data, const C_
                      orc_Data.Append("      },");
                   }
                   orc_Data.Append("      {");
-                  q_BracketIsOpen = true;
                   mh_AddDpListElementReferences(orc_Data, pc_ChannelValues->c_OutputValues, c_ChannelConfigs,
                                                 C_OSCHalcDefDomain::eVA_OUTPUT,
                                                 pc_Domain->c_SingularName, q_IsArray, oq_IsSafe);
@@ -582,7 +580,6 @@ void C_OSCExportHalc::mh_AddGlobalVariables(C_SCLStringList & orc_Data, const C_
                      orc_Data.Append("      },");
                   }
                   orc_Data.Append("      {");
-                  q_BracketIsOpen = true;
                   mh_AddDpListElementReferences(orc_Data, pc_ChannelValues->c_StatusValues, c_ChannelConfigs,
                                                 C_OSCHalcDefDomain::eVA_STATUS,
                                                 pc_Domain->c_SingularName, q_IsArray, oq_IsSafe);

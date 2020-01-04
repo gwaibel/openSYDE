@@ -14,13 +14,18 @@ message("opensyde_core.pri: --------------------- ADDING PACKAGES --------------
 # basics:
 INCLUDEPATH += $${PWD} \
                $${PWD}/kefex_diaglib \
-               $${PWD}/kefex_diaglib/tgl_windows \
                $${PWD}/logging \
                $${PWD}/md5 \
                $${PWD}/scl \
                $${PWD}/stwtypes \
                $${PWD}/xml_parser \
                $${PWD}/xml_parser/tinyxml2
+
+win32:INCLUDEPATH += \
+               $${PWD}/kefex_diaglib/tgl_windows
+
+unix:INCLUDEPATH += \
+               $${PWD}/kefex_diaglib/tgl_linux
 
 SOURCES += \
     $${PWD}/C_OSCBinaryHash.cpp \
@@ -29,10 +34,6 @@ SOURCES += \
     $${PWD}/kefex_diaglib/CSCLResourceStrings.cpp \
     $${PWD}/kefex_diaglib/DLStrings.cpp \
     $${PWD}/kefex_diaglib/stwcompid.c \
-    $${PWD}/kefex_diaglib/tgl_windows/TGLFile.cpp \
-    $${PWD}/kefex_diaglib/tgl_windows/TGLTasks.cpp \
-    $${PWD}/kefex_diaglib/tgl_windows/TGLTime.cpp \
-    $${PWD}/kefex_diaglib/tgl_windows/TGLUtils.cpp \
     $${PWD}/logging/C_OSCLoggingHandler.cpp \
     $${PWD}/md5/CMD5Checksum.cpp \
     $${PWD}/scl/CSCLChecksums.cpp \
@@ -43,6 +44,18 @@ SOURCES += \
     $${PWD}/xml_parser/C_OSCXMLParser.cpp \
     $${PWD}/xml_parser/C_OSCChecksummedXML.cpp \
     $${PWD}/xml_parser/tinyxml2/tinyxml2.cpp
+
+win32:SOURCES  += \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLFile.cpp \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLTasks.cpp \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLTime.cpp \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLUtils.cpp
+
+unix:SOURCES  += \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLFile.cpp \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLTasks.cpp \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLTime.cpp \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLUtils.cpp
 
 HEADERS += \
     $${PWD}/C_OSCBinaryHash.h \
@@ -68,6 +81,24 @@ HEADERS += \
     $${PWD}/xml_parser/C_OSCXMLParser.h \
     $${PWD}/xml_parser/C_OSCChecksummedXML.h \
     $${PWD}/xml_parser/tinyxml2/tinyxml2.h
+
+win32:HEADERS += \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLFile.h \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLTasks.h \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLTime.h \
+    $${PWD}/kefex_diaglib/tgl_windows/TGLUtils.h \
+    $${PWD}/can_dispatcher/target_windows_stw_dlls/CCAN.h \
+    $${PWD}/can_dispatcher/target_windows_stw_dlls/CCANDLL.h \
+    $${PWD}/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.h
+
+unix:HEADERS += \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLFile.h \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLTasks.h \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLTime.h \
+    $${PWD}/kefex_diaglib/tgl_linux/TGLUtils.h \
+    $${PWD}/can_dispatcher/target_linux_socket_can/CCAN.h \
+    $${PWD}/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.h
+
 
 # optional: zip/unzip
 contains(opensyde_core_skip_modules, opensyde_core_skip_zipping) {
@@ -301,7 +332,6 @@ contains(opensyde_core_skip_modules, opensyde_core_skip_protocol_drivers) {
    message("opensyde_core_skip_protocol_drivers not detected ... dragging in package")
 
    INCLUDEPATH += $${PWD}/can_dispatcher \
-                  $${PWD}/can_dispatcher/target_windows_stw_dlls \
                   $${PWD}/can_dispatcher/dispatcher \
                   $${PWD}/ip_dispatcher/target_windows_win_sock \
                   $${PWD}/ip_dispatcher/dispatcher \
@@ -313,10 +343,17 @@ contains(opensyde_core_skip_modules, opensyde_core_skip_protocol_drivers) {
                   $${PWD}/protocol_drivers/system_update \
                   $${PWD}/kefex_diaglib
 
+   win32:INCLUDEPATH += \
+                  $${PWD}/can_dispatcher/target_windows_stw_dlls \
+                  $${PWD}/ip_dispatcher/target_windows_win_sock
+
+   unix:INCLUDEPATH += \
+                  $${PWD}/can_dispatcher/target_linux_socket_can \
+                  $${PWD}/ip_dispatcher/target_linux_sock
+
+
    SOURCES += $${PWD}/can_dispatcher/dispatcher/CCANBase.cpp \
               $${PWD}/can_dispatcher/dispatcher/CCANDispatcher.cpp \
-              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCAN.cpp \
-              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCANDLL.cpp \
               $${PWD}/data_dealer/C_OSCDataDealer.cpp \
               $${PWD}/data_dealer/C_OSCDataDealerNvm.cpp \
               $${PWD}/data_dealer/C_OSCDataDealerNvmSafe.cpp \
@@ -333,7 +370,6 @@ contains(opensyde_core_skip_modules, opensyde_core_skip_protocol_drivers) {
               $${PWD}/data_dealer/paramset/C_OSCParamSetRawEntry.cpp \
               $${PWD}/data_dealer/paramset/C_OSCParamSetRawNode.cpp \
               $${PWD}/data_dealer/paramset/C_OSCParamSetRawNodeFiler.cpp \
-              $${PWD}/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.cpp \
               $${PWD}/kefex_diaglib/CDLReportEvents.cpp \
               $${PWD}/kefex_diaglib/CHexFile.cpp \
               $${PWD}/kefex_diaglib/CKFXComm.cpp \
@@ -365,10 +401,18 @@ contains(opensyde_core_skip_modules, opensyde_core_skip_protocol_drivers) {
               $${PWD}/protocol_drivers/system_update/C_OSCSuServiceUpdatePackage.cpp \
               $${PWD}/protocol_drivers/system_update/C_OsyHexFile.cpp
 
+   win32:SOURCES  += \
+              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCAN.cpp \
+              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCANDLL.cpp \
+              $${PWD}/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.cpp
+
+   unix:SOURCES  += \
+              $${PWD}/can_dispatcher/target_linux_socket_can/CCAN.cpp \
+              $${PWD}/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.cpp
+
+
    HEADERS += $${PWD}/can_dispatcher/dispatcher/CCANBase.h \
               $${PWD}/can_dispatcher/dispatcher/CCANDispatcher.h \
-              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCAN.h \
-              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCANDLL.h \
               $${PWD}/data_dealer/C_OSCDataDealer.h \
               $${PWD}/data_dealer/C_OSCDataDealerNvm.h \
               $${PWD}/data_dealer/C_OSCDataDealerNvmSafe.h \
@@ -386,7 +430,6 @@ contains(opensyde_core_skip_modules, opensyde_core_skip_protocol_drivers) {
               $${PWD}/data_dealer/paramset/C_OSCParamSetRawNode.h \
               $${PWD}/data_dealer/paramset/C_OSCParamSetRawNodeFiler.h \
               $${PWD}/ip_dispatcher/dispatcher/C_OSCIpDispatcher.h \
-              $${PWD}/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.h \
               $${PWD}/kefex_diaglib/CDLReportEvents.h \
               $${PWD}/kefex_diaglib/CHexFile.h \
               $${PWD}/kefex_diaglib/CKFXComm.h \
@@ -417,6 +460,15 @@ contains(opensyde_core_skip_modules, opensyde_core_skip_protocol_drivers) {
               $${PWD}/protocol_drivers/system_update/C_OSCSuSequences.h \
               $${PWD}/protocol_drivers/system_update/C_OSCSuServiceUpdatePackage.h \
               $${PWD}/protocol_drivers/system_update/C_OsyHexFile.h
+
+   win32:HEADERS  += \
+              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCAN.h \
+              $${PWD}/can_dispatcher/target_windows_stw_dlls/CCANDLL.h \
+              $${PWD}/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.h
+
+   unix:HEADERS  += \
+              $${PWD}/can_dispatcher/target_linux_socket_can/CCAN.h \
+              $${PWD}/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.h
 }
 
 # optional: protocol logging
