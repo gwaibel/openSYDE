@@ -1723,7 +1723,6 @@ FORMS    += \
     ../src/system_views/system_update/C_SyvUpOverviewWidget.ui \
     ../src/opensyde_gui_elements/widget/C_OgeWiDashboardTab.ui \
     ../src/system_views/dashboards/C_SyvDaTearOffWidget.ui \
-    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.ui \
     ../src/opensyde_gui_elements/widget/C_OgeWiFontConfig.ui \
     ../src/system_views/dashboards/C_SyvDaDashboardSettings.ui \
     ../src/system_views/dashboards/items/C_SyvDaItDashboardLabelWidget.ui \
@@ -1808,6 +1807,12 @@ FORMS    += \
     ../src/system_definition/node_edit/datapools/C_SdNdeDpListEditWidget.ui \
     ../src/system_definition/node_edit/halc/C_SdNdeHalcChannelDpPreviewPopUp.ui \
     ../src/system_definition/node_edit/datapools/C_SdNdeDpListCommentDialog.ui
+
+win32:FORMS += \
+    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.ui
+
+unix:FORMS += \
+    ../src/system_views/system_setup/C_SyvSeCanConfigurationDialog.ui
 
 INCLUDEPATH += ../src \
                ../src/com_import_export \
