@@ -411,7 +411,6 @@ SOURCES += ../src/main.cpp\
     ../src/scene_base/undo/topology/C_SebUnoTopBusConnectorMoveCommand.cpp \
     ../src/system_views/dashboards/C_SyvDaTearOffWidget.cpp \
     ../src/scene_base/C_SebTopologyBaseContextMenuManager.cpp \
-    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.cpp \
     ../libs/opensyde_core/can_dispatcher/dispatcher/CCANBase.cpp \
     ../libs/opensyde_core/can_dispatcher/dispatcher/CCANDispatcher.cpp \
     ../src/opensyde_gui_elements/group_box/C_OgeGbxRead.cpp \
@@ -921,7 +920,8 @@ win32:SOURCES  += \
     ../libs/opensyde_core/can_dispatcher/target_windows_stw_dlls/CCAN.cpp \
     ../libs/opensyde_core/can_dispatcher/target_windows_stw_dlls/CCANDLL.cpp \
     ../libs/opensyde_core/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.cpp \
-    ../src/help_engine/windows/C_HeHandler.cpp
+    ../src/help_engine/windows/C_HeHandler.cpp \
+    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.cpp
 
 unix:SOURCES  += \
     ../libs/opensyde_core/kefex_diaglib/tgl_linux/TGLFile.cpp \
@@ -930,7 +930,8 @@ unix:SOURCES  += \
     ../libs/opensyde_core/kefex_diaglib/tgl_linux/TGLUtils.cpp \
     ../libs/opensyde_core/can_dispatcher/target_linux_socket_can/CCAN.cpp \
     ../libs/opensyde_core/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.cpp \
-    ../src/help_engine/linux/C_HeHandler.cpp
+    ../src/help_engine/linux/C_HeHandler.cpp \
+    ../src/system_views/system_setup/C_SyvSeCanConfigurationDialog.cpp
 
 
 PRECOMPILED_HEADER = ../src/precompiled_headers/gui/precomp_headers.h
@@ -1332,7 +1333,6 @@ HEADERS  += \
     ../src/scene_base/undo/topology/C_SebUnoTopBaseManager.h \
     ../src/system_views/dashboards/C_SyvDaTearOffWidget.h \
     ../src/scene_base/C_SebTopologyBaseContextMenuManager.h \
-    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.h \
     ../libs/opensyde_core/can_dispatcher/dispatcher/CCANBase.h \
     ../libs/opensyde_core/can_dispatcher/dispatcher/CCANDispatcher.h \
     ../libs/opensyde_core/can_dispatcher/dispatcher/stw_can.h \
@@ -1857,7 +1857,8 @@ win32:HEADERS += \
     ../libs/opensyde_core/can_dispatcher/target_windows_stw_dlls/CCAN.h \
     ../libs/opensyde_core/can_dispatcher/target_windows_stw_dlls/CCANDLL.h \
     ../libs/opensyde_core/ip_dispatcher/target_windows_win_sock/C_OSCIpDispatcherWinSock.h \
-    ../src/help_engine/windows/C_HeHandler.h
+    ../src/help_engine/windows/C_HeHandler.h \
+    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.h
 
 unix:HEADERS += \
     ../libs/opensyde_core/kefex_diaglib/tgl_linux/TGLFile.h \
@@ -1866,7 +1867,8 @@ unix:HEADERS += \
     ../libs/opensyde_core/kefex_diaglib/tgl_linux/TGLUtils.h \
     ../libs/opensyde_core/can_dispatcher/target_linux_socket_can/CCAN.h \
     ../libs/opensyde_core/ip_dispatcher/target_linux_sock/C_OSCIpDispatcherLinuxSock.h \
-    ../src/help_engine/linux/C_HeHandler.h
+    ../src/help_engine/linux/C_HeHandler.h \
+    ../src/system_views/system_setup/C_SyvSeCanConfigurationDialog.h
 
 FORMS    += \
     ../src/system_definition/C_SdTopologyWidget.ui \
@@ -1926,7 +1928,6 @@ FORMS    += \
     ../src/system_views/system_update/C_SyvUpOverviewWidget.ui \
     ../src/opensyde_gui_elements/widget/C_OgeWiDashboardTab.ui \
     ../src/system_views/dashboards/C_SyvDaTearOffWidget.ui \
-    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.ui \
     ../src/opensyde_gui_elements/widget/C_OgeWiFontConfig.ui \
     ../src/system_views/dashboards/C_SyvDaDashboardSettings.ui \
     ../src/system_views/dashboards/items/C_SyvDaItDashboardLabelWidget.ui \
@@ -2001,6 +2002,12 @@ FORMS    += \
     ../src/com_import_export/C_CieImportDatapoolSelectWidget.ui \
     ../src/graphic_items/style_setup/C_GiSyColorSelectWidget.ui \
     ../src/system_definition/node_edit/halc/C_SdNdeHalcWidget.ui
+
+win32:FORMS += \
+    ../src/system_views/system_setup/C_SyvSeDllConfigurationDialog.ui
+
+unix:FORMS += \
+    ../src/system_views/system_setup/C_SyvSeCanConfigurationDialog.ui
 
 INCLUDEPATH += ../src \
                ../src/com_import_export \
