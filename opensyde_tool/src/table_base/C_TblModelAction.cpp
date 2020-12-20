@@ -393,7 +393,7 @@ QVariant C_TblModelAction::mh_HandleHexValue(const uint64 ou64_Value, const sint
    }
    else
    {
-      c_Retval = ou64_Value;
+      c_Retval = static_cast<quint64>(ou64_Value);
    }
    return c_Retval;
 }

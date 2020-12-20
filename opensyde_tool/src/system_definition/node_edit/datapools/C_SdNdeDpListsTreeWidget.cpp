@@ -1559,7 +1559,7 @@ void C_SdNdeDpListsTreeWidget::mh_AdaptDropTargetIndex(const std::vector<uint32>
       }
    }
    //Always check if it is positive
-   ors32_TargetPosition = std::max(ors32_TargetPosition, 0L);
+   ors32_TargetPosition = std::max(ors32_TargetPosition, 0);
 }
 
 //----------------------------------------------------------------------------------------------------------------------

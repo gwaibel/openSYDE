@@ -660,7 +660,7 @@ void C_SdNdeDpListHeaderWidget::m_EditSizeFinished(void)
    if (this->mq_InitActive == false)
    {
       //lint -e571 cast necessary to explicitly have QVariant of type uint64
-      const QVariant c_Data = static_cast<uint64>(this->mpc_Ui->pc_SpinBoxSize->value());
+      const QVariant c_Data = static_cast<quint64>(this->mpc_Ui->pc_SpinBoxSize->value());
 
       if (this->mpc_UndoManager != NULL)
       {

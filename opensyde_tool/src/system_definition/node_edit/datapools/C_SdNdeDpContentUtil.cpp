@@ -1372,10 +1372,10 @@ sint32 C_SdNdeDpContentUtil::h_SimpleConvertToVariant(const C_OSCNodeDataPoolCon
          orc_Variant = orc_Content.GetValueS16();
          break;
       case C_OSCNodeDataPoolContent::eSINT32:
-         orc_Variant = static_cast<sint64>(orc_Content.GetValueS32());
+         orc_Variant = static_cast<qint64>(orc_Content.GetValueS32());
          break;
       case C_OSCNodeDataPoolContent::eSINT64:
-         orc_Variant = orc_Content.GetValueS64();
+         orc_Variant = static_cast<qint64>(orc_Content.GetValueS64());
          break;
       case C_OSCNodeDataPoolContent::eUINT8:
          orc_Variant = static_cast<sintn>(orc_Content.GetValueU8());
@@ -1384,10 +1384,10 @@ sint32 C_SdNdeDpContentUtil::h_SimpleConvertToVariant(const C_OSCNodeDataPoolCon
          orc_Variant = orc_Content.GetValueU16();
          break;
       case C_OSCNodeDataPoolContent::eUINT32:
-         orc_Variant = static_cast<uint64>(orc_Content.GetValueU32());
+         orc_Variant = static_cast<quint64>(orc_Content.GetValueU32());
          break;
       case C_OSCNodeDataPoolContent::eUINT64:
-         orc_Variant = orc_Content.GetValueU64();
+         orc_Variant = static_cast<quint64>(orc_Content.GetValueU64());
          break;
       case C_OSCNodeDataPoolContent::eFLOAT32:
          orc_Variant = orc_Content.GetValueF32();
@@ -1887,28 +1887,28 @@ QVariant C_SdNdeDpContentUtil::h_ConvertContentToGeneric(const C_OSCNodeDataPool
       switch (orc_Input.GetType())
       {
       case C_OSCNodeDataPoolContent::E_Type::eUINT8:
-         c_Retval = static_cast<uint64>(orc_Input.GetValueU8());
+         c_Retval = static_cast<quint64>(orc_Input.GetValueU8());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eUINT16:
-         c_Retval = static_cast<uint64>(orc_Input.GetValueU16());
+         c_Retval = static_cast<quint64>(orc_Input.GetValueU16());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eUINT32:
-         c_Retval = static_cast<uint64>(orc_Input.GetValueU32());
+         c_Retval = static_cast<quint64>(orc_Input.GetValueU32());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eUINT64:
-         c_Retval = orc_Input.GetValueU64();
+         c_Retval = static_cast<quint64>(orc_Input.GetValueU64());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT8:
-         c_Retval = static_cast<sint64>(orc_Input.GetValueS8());
+         c_Retval = static_cast<qint64>(orc_Input.GetValueS8());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT16:
-         c_Retval = static_cast<sint64>(orc_Input.GetValueS16());
+         c_Retval = static_cast<qint64>(orc_Input.GetValueS16());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT32:
-         c_Retval = static_cast<sint64>(orc_Input.GetValueS32());
+         c_Retval = static_cast<qint64>(orc_Input.GetValueS32());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT64:
-         c_Retval = orc_Input.GetValueS64();
+         c_Retval = static_cast<qint64>(orc_Input.GetValueS64());
          break;
       case C_OSCNodeDataPoolContent::E_Type::eFLOAT32:
          c_Retval = static_cast<float64>(orc_Input.GetValueF32());
@@ -1926,28 +1926,28 @@ QVariant C_SdNdeDpContentUtil::h_ConvertContentToGeneric(const C_OSCNodeDataPool
       switch (orc_Input.GetType())
       {
       case C_OSCNodeDataPoolContent::E_Type::eUINT8:
-         c_Retval = static_cast<uint64>(orc_Input.GetValueAU8Element(oru32_Index));
+         c_Retval = static_cast<quint64>(orc_Input.GetValueAU8Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eUINT16:
-         c_Retval = static_cast<uint64>(orc_Input.GetValueAU16Element(oru32_Index));
+         c_Retval = static_cast<quint64>(orc_Input.GetValueAU16Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eUINT32:
-         c_Retval = static_cast<uint64>(orc_Input.GetValueAU32Element(oru32_Index));
+         c_Retval = static_cast<quint64>(orc_Input.GetValueAU32Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eUINT64:
-         c_Retval = orc_Input.GetValueAU64Element(oru32_Index);
+         c_Retval = static_cast<quint64>(orc_Input.GetValueAU64Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT8:
-         c_Retval = static_cast<sint64>(orc_Input.GetValueAS8Element(oru32_Index));
+         c_Retval = static_cast<qint64>(orc_Input.GetValueAS8Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT16:
-         c_Retval = static_cast<sint64>(orc_Input.GetValueAS16Element(oru32_Index));
+         c_Retval = static_cast<qint64>(orc_Input.GetValueAS16Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT32:
-         c_Retval = static_cast<sint64>(orc_Input.GetValueAS32Element(oru32_Index));
+         c_Retval = static_cast<qint64>(orc_Input.GetValueAS32Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eSINT64:
-         c_Retval = orc_Input.GetValueAS64Element(oru32_Index);
+         c_Retval = static_cast<qint64>(orc_Input.GetValueAS64Element(oru32_Index));
          break;
       case C_OSCNodeDataPoolContent::E_Type::eFLOAT32:
          c_Retval = static_cast<float64>(orc_Input.GetValueAF32Element(oru32_Index));
@@ -2003,12 +2003,12 @@ QVariant C_SdNdeDpContentUtil::h_ConvertScaledContentToGeneric(const C_OSCNodeDa
                  (f64_ScaledValue >= static_cast<float64>(std::numeric_limits<sint64>::min()))) &&
                 (f64_ScaledValue <= static_cast<float64>(std::numeric_limits<sint64>::max())))
             {
-               c_Retval = static_cast<sint64>(f64_ScaledValue);
+               c_Retval = static_cast<qint64>(f64_ScaledValue);
             }
             else if ((f64_ScaledValue >= static_cast<float64>(std::numeric_limits<uint64>::min())) &&
                      (f64_ScaledValue <= static_cast<float64>(std::numeric_limits<uint64>::max())))
             {
-               c_Retval = static_cast<uint64>(f64_ScaledValue);
+               c_Retval = static_cast<quint64>(f64_ScaledValue);
             }
             else
             {

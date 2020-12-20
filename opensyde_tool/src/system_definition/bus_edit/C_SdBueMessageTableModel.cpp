@@ -249,7 +249,7 @@ QVariant C_SdBueMessageTableModel::data(const QModelIndex & orc_Index, const sin
                   case eCAN_ID:
                      if (osn_Role == static_cast<sintn>(Qt::EditRole))
                      {
-                        c_Retval = static_cast<uint64>(pc_Message->u32_CanId);
+                        c_Retval = static_cast<quint64>(pc_Message->u32_CanId);
                      }
                      else
                      {
@@ -265,7 +265,7 @@ QVariant C_SdBueMessageTableModel::data(const QModelIndex & orc_Index, const sin
                   case eCYCLE_TIME:
                      if (pc_Message->e_TxMethod == C_OSCCanMessage::eTX_METHOD_CYCLIC)
                      {
-                        c_Retval = static_cast<uint64>(pc_Message->u32_CycleTimeMs);
+                        c_Retval = static_cast<quint64>(pc_Message->u32_CycleTimeMs);
                      }
                      else
                      {
@@ -285,7 +285,7 @@ QVariant C_SdBueMessageTableModel::data(const QModelIndex & orc_Index, const sin
                   case eNOT_LATER_THAN:
                      if (pc_Message->e_TxMethod == C_OSCCanMessage::eTX_METHOD_ON_CHANGE)
                      {
-                        c_Retval = static_cast<uint64>(pc_Message->u32_CycleTimeMs);
+                        c_Retval = static_cast<quint64>(pc_Message->u32_CycleTimeMs);
                      }
                      else
                      {

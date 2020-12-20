@@ -512,28 +512,28 @@ QVariant C_SyvDaPeUpdateModeTableModel::data(const QModelIndex & orc_Index, cons
                   switch (rc_CurConfig.c_ChangeThreshold.GetType())
                   {
                   case C_OSCNodeDataPoolContent::eUINT8:
-                     c_Retval = static_cast<uint64>(std::numeric_limits<uint8>::max());
+                     c_Retval = static_cast<quint64>(std::numeric_limits<uint8>::max());
                      break;
                   case C_OSCNodeDataPoolContent::eUINT16:
-                     c_Retval = static_cast<uint64>(std::numeric_limits<uint16>::max());
+                     c_Retval = static_cast<quint64>(std::numeric_limits<uint16>::max());
                      break;
                   case C_OSCNodeDataPoolContent::eUINT32:
-                     c_Retval = static_cast<uint64>(std::numeric_limits<uint32>::max());
+                     c_Retval = static_cast<quint64>(std::numeric_limits<uint32>::max());
                      break;
                   case C_OSCNodeDataPoolContent::eUINT64:
-                     c_Retval = std::numeric_limits<uint64>::max();
+                     c_Retval = std::numeric_limits<quint64>::max();
                      break;
                   case C_OSCNodeDataPoolContent::eSINT8:
-                     c_Retval = static_cast<sint64>(std::numeric_limits<sint8>::max());
+                     c_Retval = static_cast<qint64>(std::numeric_limits<sint8>::max());
                      break;
                   case C_OSCNodeDataPoolContent::eSINT16:
-                     c_Retval = static_cast<sint64>(std::numeric_limits<sint16>::max());
+                     c_Retval = static_cast<qint64>(std::numeric_limits<sint16>::max());
                      break;
                   case C_OSCNodeDataPoolContent::eSINT32:
-                     c_Retval = static_cast<sint64>(std::numeric_limits<sint32>::max());
+                     c_Retval = static_cast<qint64>(std::numeric_limits<sint32>::max());
                      break;
                   case C_OSCNodeDataPoolContent::eSINT64:
-                     c_Retval = std::numeric_limits<sint64>::max();
+                     c_Retval = std::numeric_limits<qint64>::max();
                      break;
                   case C_OSCNodeDataPoolContent::eFLOAT32:
                      c_Retval = static_cast<float64>(std::numeric_limits<float32>::max());

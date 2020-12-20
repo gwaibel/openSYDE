@@ -168,7 +168,7 @@ void C_SdNdeUnoDataPoolListDataChangeCommand::mh_ConvertListTypeToGeneric(const 
       orc_Generic = orc_OSCElement.c_Comment.c_str();
       break;
    case C_SdNdeDpUtil::eLIST_SIZE:
-      orc_Generic = static_cast<uint64>(orc_OSCElement.u32_NvMSize);
+      orc_Generic = static_cast<quint64>(orc_OSCElement.u32_NvMSize);
       break;
    case C_SdNdeDpUtil::eLIST_CRC:
       orc_Generic = orc_OSCElement.q_NvMCRCActive;

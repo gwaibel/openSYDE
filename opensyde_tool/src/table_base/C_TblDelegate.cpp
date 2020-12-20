@@ -251,7 +251,7 @@ void C_TblDelegate::setModelData(QWidget * const opc_Editor, QAbstractItemModel 
       pc_ComboBox = dynamic_cast<C_OgeCbxTableBase *>(opc_Editor);
       if (pc_ComboBox != NULL)
       {
-         opc_Model->setData(orc_Index, static_cast<sint64>(pc_ComboBox->GetValueForCurrentIndex()),
+         opc_Model->setData(orc_Index, static_cast<qint64>(pc_ComboBox->GetValueForCurrentIndex()),
                             static_cast<sintn>(Qt::EditRole));
       }
       break;

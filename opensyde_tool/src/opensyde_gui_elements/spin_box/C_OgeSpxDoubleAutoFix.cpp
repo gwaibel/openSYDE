@@ -200,7 +200,7 @@ void C_OgeSpxDoubleAutoFix::m_Init(void)
    }
    else
    {
-      this->setDecimals(std::max(std::max(s32_DecimalsFactor, s32_DecimalsOffset), 1L));
+      this->setDecimals(std::max(std::max(s32_DecimalsFactor, s32_DecimalsOffset), 1));
    }
    //Step width
    if (this->mu64_NumberOfStepsAvailable > 0)
