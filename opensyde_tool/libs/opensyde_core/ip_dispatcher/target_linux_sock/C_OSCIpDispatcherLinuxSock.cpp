@@ -1213,10 +1213,14 @@ sint32 C_OSCIpDispatcherLinuxSock::ReadUdp(std::vector<uint8> & orc_Data, uint8 
             s32_Return = C_RD_WR;
          }
       }
-      else
+      else if (sn_Return < 0)
       {
          // Write error to log, then ignore the error and continue
          osc_write_log_error("openSYDE IP-TP", "ReadUdp called with invalid socket (ioctl(FIONREAD) failed).");
+      }
+      else
+      {
+         // No data available, nothing to do...
       }
    }
 
