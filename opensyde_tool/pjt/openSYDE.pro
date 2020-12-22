@@ -1914,6 +1914,9 @@ win32:LIBS += -L../libs/gettext \
               -lIphlpapi \
               -lversion
 
+unix:LIBS += -lm \
+             -lstdc++
+
 unix:QMAKE_CXXFLAGS += -std=c++0x
 
 QMAKE_TARGET_COMPANY = STW

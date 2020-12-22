@@ -60,6 +60,8 @@ else()
    target_link_libraries(osy_syde_coder_c
       opensyde_core
       pthread
+      m
+      stdc++
    )
 endif()
 
